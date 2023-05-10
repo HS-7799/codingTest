@@ -25,5 +25,11 @@ public class Deplacement {
         this.y = y;
     }
 
-
+    @Override
+    public String toString() {
+        return "Deplacement{" +
+                "x=" + x +
+                ", y=" + y +
+                '}';
+    }
 }

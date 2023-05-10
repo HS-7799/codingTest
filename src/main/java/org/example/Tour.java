@@ -14,20 +14,36 @@ public class Tour extends Piece {
         int y = this.getPosition().getY();
 
         List<Deplacement> deplacements = new ArrayList<>();
-        for (int j = 0; j< positions.length;j++) {
-            if (positions[x][j].getPiece() != null) {
-                break;
+        // horizontal, x fix, y varie
+        for (int j = y + 1; j < positions.length; j++) {
+            if (positions[x][j].getPiece() == null) {
+                deplacements.add(new Deplacement(x,j));
             } else {
-                deplacements.add(new Deplacement(x, j));
+                break;
             }
         }
-
-        for (int i = 0; i< positions.length;i++) {
+        for (int j = y - 1; j >= 0; j--) {
+            if (positions[x][j].getPiece() == null) {
+                deplacements.add(new Deplacement(x,j));
+            } else {
+                break;
+            }
+        }
+        // vertical, x varie, y fix
+        for (int i = x + 1; i < positions.length; i++) {
             if (positions[i][y].getPiece() == null) {
-                deplacements.add(new Deplacement(i, y));
+                deplacements.add(new Deplacement(i,y));
+            } else {
+                break;
             }
         }
-
+        for (int i = x - 1; i >= 0; i--) {
+            if (positions[i][y].getPiece() == null) {
+                deplacements.add(new Deplacement(i,y));
+            } else {
+                break;
+            }
+        }
         return deplacements;
     }
 }
